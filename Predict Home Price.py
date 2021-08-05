@@ -30,7 +30,7 @@ def take_inputs() :
     st.write('\n\t\t')
     pred = st.button('PREDICT')
     if pred :
-        if loc or sqft > 100 :
+        if loc and sqft > 100.0 and bath < bhk + 2 and bhk < bath + 3:
             st.write('\n')
             st.write('### Your input values :')
             d = {'Location' : loc, 'Total Square Feet Area' : sqft, 'Bathrooms' : bath, 'BHK' : bhk}
@@ -42,10 +42,12 @@ def take_inputs() :
                 st.write('\n')
                 return predict_price(loc, sqft, bath, bhk)
         else :
-            if sqft <= 100 :
+            if sqft <= 100.0 :
                 st.error('Total Square Feet field must be greater than 100!')    
             if not loc :
                 st.error('Location field is not selected. Please check!')
+            if bath >= bhk + 2 or bhk >= bath + 3:
+                st.error('Invalid data!!')
 
 def predict_price(location, sqft, bath, bhk) :
     loc = 'location_' + location
@@ -63,7 +65,7 @@ def predict_price(location, sqft, bath, bhk) :
         price = 10
     st.info(f'''
         Predicted price of your **Dream House** in {location} having {sqft} sqft, {bhk} BHK and {bath} bathroom/s is 
-        **{round(price, 2)} Lakh INR**
+        *0*{round(price, 2)} Lakh INR**
         ''')
 
 take_inputs()
