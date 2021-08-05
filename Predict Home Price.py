@@ -65,7 +65,7 @@ def predict_price(location, sqft, bath, bhk) :
         price = 10
     st.info(f'''
         Predicted price of your **Dream House** in {location} having {sqft} sqft, {bhk} BHK and {bath} bathroom/s is 
-        *0*{round(price, 2)} Lakh INR**
+        **{round(price, 2)} Lakh INR**
         ''')
 
 take_inputs()
